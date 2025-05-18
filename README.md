@@ -67,7 +67,7 @@ Identified customers whose last transaction or plan activity occurred over one y
 
 ---
 
-## Query 4: Estimated Customer Lifetime Value (CLV)
+## Query 4: Estimate Customer Lifetime Value (CLV)
 
 ### Objective
 Estimate annual CLV by analyzing customer tenure and total confirmed savings.
