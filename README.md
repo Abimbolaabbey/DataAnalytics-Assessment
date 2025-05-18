@@ -19,12 +19,12 @@ This project involves a set of analytical SQL queries designed to assess custome
 To compute each customer's total deposit, combining both confirmed savings and investment amounts.
 
 ### Approach:
-- I use aggregate confirmed_amount from savings_savingsaccount (joined through plans_plan).
+- I used aggregate confirmed_amount from savings_savingsaccount (joined through plans_plan).
 - Aggregate was also used for cowry_amount from plans_plan (only where is_a_fund = 1).
-- Use COALESCE to handle nulls when summing deposits.
+- Used COALESCE to handle nulls when summing deposits.
 - Filtered out customers with no deposits.
 
-### Challenges:
+### Challenges And Resolution:
 - I ensured all customers are represented, even with missing data.
 - Used subqueries for accurate grouping and efficient computation.
 
@@ -44,7 +44,7 @@ To classify customers based on their average monthly transaction frequency.
   - *Medium Frequency* (3–9/month)
   - *Low Frequency* (< 3/month)
 
-### Challenges:
+### Challenges And Resolution:
 - I used MAX(1, active_days) to avoid division by zero.
 - Also used ROUND for consistent frequency values.
 
@@ -61,7 +61,7 @@ Identified customers whose last transaction or plan activity occurred over one y
 - Filtered with:  
   DATE(last_transaction_date) <= DATE('now', '-365 days')
 
-### Challenge:
+### Challenge And Resolution:
 - *SQLite Limitation*: Could not nest MAX(...) inside JULIANDAY(...) directly.
 - *Resolution: Used a **Common Table Expression (CTE)* to first extract last_transaction_date, then calculated inactive_days in the main query.
 
@@ -80,7 +80,7 @@ Estimate annual CLV by analyzing customer tenure and total confirmed savings.
   - Formula:  
     ((SUM(s.confirmed_amount) * 0.001) / tenure_months) * 12
 
-### Challenges:
+### Challenges And Resolution:
 - I avoided division by zero by ensuring all users had valid creation dates and at least one transaction.
 - Initial error due to using ROUND(JULIANDAY(...) - JULIANDAY(MAX(...))) directly in SQLite.
 - *Resolution*: Refactored using CTE and CAST(... AS INTEGER) to make it compatible with SQLite’s evaluation order.
