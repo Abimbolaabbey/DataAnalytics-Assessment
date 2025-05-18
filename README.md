@@ -9,7 +9,7 @@ This project involves a set of analytical SQL queries designed to assess custome
 - users_customuser – customer records
 - plans_plan – savings or investment plans
 - savings_savingsaccount – savings transactions
-- withdrawals_withdrawal:  records of withdrawal transactions
+- withdrawals_withdrawal -  records of withdrawal transactions
 
 ---
 
